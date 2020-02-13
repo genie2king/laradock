@@ -680,6 +680,12 @@ RUN if [ ${INSTALL_NODE} = true ]; then \
         && ln -s `npm bin --global` /home/laradock/.node-bin \
 ;fi
 
+RUN if [ ${INSTALL_NODE} = true ]; then \
+nvm install 10
+nvm use 10
+ln -fs /home/laradock/.nvm/versions/node/v10.19.0/bin/node  /usr/bin/node
+;fi
+
 # Wouldn't execute when added to the RUN statement in the above block
 # Source NVM when loading bash since ~/.profile isn't loaded on non-login shell
 RUN if [ ${INSTALL_NODE} = true ]; then \
